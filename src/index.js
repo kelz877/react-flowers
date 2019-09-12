@@ -3,20 +3,26 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import {BaseLayout} from './components/BaseLayout';
 import App from './components/App';
-import {BrowserRouter, Route, Switch} from 'react-router-dom';
-
+import {BrowserRouter, Switch} from 'react-router-dom';
+import { createStore} from 'redux';
+import {Provider} from 'react-redux';
+import reducer from './store/reducers/reducer'
 import * as serviceWorker from './serviceWorker';
 
+const store = createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
+
+
+
 ReactDOM.render(
-    <BrowserRouter>
-        <BaseLayout>
-            <Switch>
-                <App />
-            </Switch>  
-        </BaseLayout>
-    </BrowserRouter>
-    
-    
+    <Provider store={store}>
+        <BrowserRouter>
+            <BaseLayout>
+                <Switch>
+                    <App />
+                </Switch>  
+            </BaseLayout>
+        </BrowserRouter>
+    </Provider>
     
     
     , document.getElementById('root'));

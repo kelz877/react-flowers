@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 import {CardDeck, Card, Button} from 'react-bootstrap'
 import {withRouter, BrowserRouter, Link} from 'react-router-dom'
+import { connect } from 'react-redux';
 
 class DisplayFlowers extends Component {
     constructor(props) {
@@ -23,6 +24,12 @@ class DisplayFlowers extends Component {
         })
     }
 
+    addToCart = (ID) => {
+        this.props.onIncrement(ID)
+        console.log(ID)
+
+    }
+
     render() {
         let flowerItems = this.props.flowers.map(flower => {
 
@@ -37,6 +44,7 @@ class DisplayFlowers extends Component {
                                 <Card.Text>{flower.description}</Card.Text>
                                 <Button variant="outline-danger" onClick={() => this.deleteFlower(flower.id)}> Delete Flower</Button>
                                 <Link to={`/flowers/update-flower/${flower.id}`}><Button variant="outline-info">Update Flower</Button></Link>
+                                <Button variant='info' onClick={() => this.addToCart(flower.id)}>Add To Cart</Button>
                             </Card.Body>
                         </div>
 
@@ -55,7 +63,11 @@ class DisplayFlowers extends Component {
 
 
 }
+const mapDispatchToProps = (dispatch) => {
+    return {
+        onIncrement: (ID) => dispatch({ type: 'Count_CART', payload: ID})
+    }
+}
 
 
-
-export default withRouter(DisplayFlowers)
+export default connect(null, mapDispatchToProps)(withRouter(DisplayFlowers))
