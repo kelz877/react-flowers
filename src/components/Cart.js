@@ -17,10 +17,10 @@ function Cart(props) {
     }
 
     useEffect(() => {
-        console.log("Cart test")
-        console.log(props.flower_id)
+        //console.log("Cart test")
+        //console.log(props.flower_id)
         fetchCart()
-    }, [props.flower_id])
+    }, [props.flower_id]) //second argument is a dependency. if you dont pass a second argument, useEffect is going to fire again. array of dependencies you can pass in to tell useEffect to only fire when these things change
 
     
     // const cartFlower = cartFlowers.filter(function(filteredCart_el){
@@ -33,7 +33,7 @@ function Cart(props) {
     let newCart = cartFlowers.filter(function(el){
         return ~(props.flower_id).indexOf(el.id)
     })
-    console.log(newCart)
+    //console.log(newCart)
     
     return (
         <div>
@@ -54,6 +54,7 @@ function Cart(props) {
             {/* {props.flower_id.map((id) => {
                 return <div>{id}</div>
             })} */}
+            <div>Hello</div>
         </div>
     )
 }
