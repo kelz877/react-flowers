@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-
+import Cart from './Cart'
 import AddFlower from './AddFlower'
 import DisplayFlowers from './FlowerList'
 import {Route} from 'react-router-dom';
@@ -34,6 +34,7 @@ class App extends Component {
               <Route path='/add-flower' render = {() => <AddFlower fetch={this.fetchFlowers} />}/>
               <Route path='/flowers/update-flower/:id' render={() => <UpdateFlower fetch={this.fetchFlowers}/>} />
               <Route path='/flowers' exact render={() => <DisplayFlowers fetch={this.fetchFlowers} flowers = {this.state.flowers} /> } />
+              <Route path='/cart' render={() => <Cart />}/>
               
             </div>
   }
