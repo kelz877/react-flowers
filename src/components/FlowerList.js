@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 import {CardDeck, Card, Button} from 'react-bootstrap'
-import {withRouter, BrowserRouter, Link} from 'react-router-dom'
+import {withRouter, Link} from 'react-router-dom'
 import { connect } from 'react-redux';
 
 class DisplayFlowers extends Component {

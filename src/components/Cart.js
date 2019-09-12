@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 
 
 
+
 function Cart(props) {
     const [cartFlowers, setCartFlowers] = useState([])
 
@@ -11,7 +12,7 @@ function Cart(props) {
         .then(response => response.json())
         .then(json => {
             setCartFlowers(json)
-            console.log(json)
+            //console.log(json)
         })
     }
 
@@ -19,7 +20,7 @@ function Cart(props) {
         console.log("Cart test")
         console.log(props.flower_id)
         fetchCart()
-    }, [])
+    }, [props.flower_id])
 
     
     // const cartFlower = cartFlowers.filter(function(filteredCart_el){
@@ -28,13 +29,21 @@ function Cart(props) {
     //     }).length == 0)
     // })
     // console.log(cartFlower)
-    console.log(cartFlowers)
+
+    let newCart = cartFlowers.filter(function(el){
+        return ~(props.flower_id).indexOf(el.id)
+    })
+    console.log(newCart)
     
     return (
         <div>
 
 
-            Hello
+            {newCart.map(item => {
+                return <div key={item.id}>
+                    {item.name}
+                </div>
+            })}
              
             {/* {cartFlowers.filter((cartFlower => !props.flower_id(cartFlower){
                 return <div>
